@@ -1,0 +1,62 @@
+<% layout('./layout/page') -%>
+<% block('item1', '<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>') -%>
+<% block('item2', '<li class="nav-item"><a class="nav-link" href="/register">Registration</a></li>') -%>
+<hr>
+<div style="width: 60%; margin: 0 auto;">
+<form method="post" class="form-signin text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Registration Form</h1>
+    <label for="inputNickname" class="sr-only">Nickname</label>
+    <input type="text" id="inputNickname" class="form-control" placeholder="Nickname" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+    <!-- <label>
+        <input type="checkbox" value="remember-me"> Remember me
+    </label> -->
+    </div>
+    <button id="reg-btn" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+</form>
+<span class="help-block error"></span>
+</div>
+<script>
+
+$(function() {
+    // $('#reg-btn"').on('click', function(e)
+    $(document).find('#reg-btn').on('click', function(e)
+    {
+        e.preventDefault();
+
+        var data = {
+            username: $(document).find('#inputNickname').val(),
+            password: $(document).find('#inputPassword').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: '/register',
+            statusCode: {
+                200: function() {
+                // form.html("You are logged in").addClass('alert-success');
+                window.location.href = "/secret";
+                },
+                403: function(jqXHR) {
+                var error = JSON.parse(jqXHR.responseText);
+                // $(document).find('.error').after('<p>'+ error.message +'</p>');
+                $(document).find('.error').text(error.message);
+                }
+            }
+        });
+        // done(function(data) {
+        //         console.log(data);
+        //         // if (!data.ok) {
+        //         // console.log("bad");
+        //         // } else {
+        //         //     window.location.href = "/chat"
+        //         // }
+
+        //     });
+    });
+});
+</script>

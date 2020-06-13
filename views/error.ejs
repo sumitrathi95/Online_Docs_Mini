@@ -1,0 +1,8 @@
+<% layout('./layout/page') -%>
+<% block('item1', '<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>') -%>
+<% block('item2', '<li class="nav-item"><a class="nav-link" href="/reg">Registration</a></li>') -%>
+<% block('title', error.message) -%>
+
+<p>Sorry, an error has occurred.</p>
+
+<p><%=error.message%></p>
