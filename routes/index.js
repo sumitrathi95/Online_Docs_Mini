@@ -5,6 +5,8 @@ module.exports = function(app) {
   app.post('/logout', require('./logout').post);
 
   app.get('/secret', checkAuth, require('./secret').get);
+  app.get('/apollo', checkAuth, require('./apollo').get);
+  app.get('/covid', checkAuth, require('./covid').get);
 
   app.get('/login', redirectAuth, require('./login').get);
   app.post('/login', require('./login').post);

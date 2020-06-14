@@ -4,7 +4,7 @@ var util = require('util');
 
 var mongoose = require('./mongoose'),
   Schema = mongoose.Schema;
-
+var data;
 var schema = new Schema({
   username: {
     type: String,
@@ -39,7 +39,6 @@ schema.virtual('password')
     this.hashedPassword = this.encryptPassword(password);
   })
   .get(function() { return this._plainPassword; });
-
 
 schema.methods.checkPassword = function(password) {
   return this.encryptPassword(password) === this.hashedPassword;

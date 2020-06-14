@@ -12,9 +12,6 @@ exports.post = function(req, res, next) {
 
     User.registration(username, password, function(err, user) {
       if (err) {
-        // res.json({
-        //     ok: false
-        // });
         if (err instanceof AuthError) {
           return next(new HttpError(403, err.message));
         } else {
@@ -23,7 +20,6 @@ exports.post = function(req, res, next) {
       }
 
       req.session.user = user._id;
-    //   res.send({});
       res.json({
           ok: true
       });

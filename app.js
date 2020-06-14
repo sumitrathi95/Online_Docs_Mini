@@ -3,8 +3,8 @@ var express = require("express"),
 	HttpError = require('./error').HttpError,
 	User = require("./models/user");
 var app = express();
-
-
+var path = require('path');
+// view engine setup
 app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '/views')));
 var session = require('./models/session');
 
 

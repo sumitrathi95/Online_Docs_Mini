@@ -1,18 +1,18 @@
 <% layout('./layout/page') -%>
-<% block('item1', '<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>') -%>
-<% block('item2', '<li class="nav-item"><a class="nav-link" href="/register">Registration</a></li>') -%>
-<hr>
+
+<br><br>
 <div style="width: 60%; margin: 0 auto;">
 <form method="post" class="form-signin text-center">
-    <h1 class="h3 mb-3 font-weight-normal">Registration Form</h1>
+	<div class="text-center">
+		<div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+		<h5 class="content-group-lg">Create account <small class="display-block">All fields are required</small></h5>
+	</div>
     <label for="inputNickname" class="sr-only">Nickname</label>
-    <input type="text" id="inputNickname" class="form-control" placeholder="Nickname" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>
+    <input type="text" id="inputNickname" class="form-control" placeholder="Nickname" required="" autofocus="">
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
     <div class="checkbox mb-3">
-    <!-- <label>
-        <input type="checkbox" value="remember-me"> Remember me
-    </label> -->
+
     </div>
     <button id="reg-btn" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form>
@@ -48,15 +48,6 @@ $(function() {
                 }
             }
         });
-        // done(function(data) {
-        //         console.log(data);
-        //         // if (!data.ok) {
-        //         // console.log("bad");
-        //         // } else {
-        //         //     window.location.href = "/chat"
-        //         // }
-
-        //     });
     });
 });
 </script>

@@ -1,48 +1,143 @@
-<% layout('./layout/page') -%>
-<% block('item1', '<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>') -%>
-<% block('item2', '<li class="nav-item"><a class="nav-link" href="/register">Registration</a></li>') -%>
-<hr>
-<div style="width: 60%; margin: 0 auto;">
-<form method="post" class="form-signin text-center">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputNickname" class="sr-only">Nickname</label>
-    <input type="text" id="inputNickname" class="form-control" placeholder="Nickname" required="" autofocus="">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <div class="checkbox mb-3">
-    </div>
-    <button id="sgn-btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
-<span class="help-block error"></span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/">
+	<title>docuShare - Sumit Rathi</title>
 
-<script>
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/core.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/components.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
 
-    $(function() {
-        $(document).find('#sgn-btn').on('click', function(e)
-        {
-            e.preventDefault();
+	<!-- Core JS files -->
+	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
 
-            var data = {
-                username: $(document).find('#inputNickname').val(),
-                password: $(document).find('#inputPassword').val(),
-            };
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
 
-            $.ajax({
-                type: 'POST',
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                url: '/login',
-                statusCode: {
-                    200: function() {
-                    window.location.href = "/secret";
-                    },
-                    403: function(jqXHR) {
-                    var error = JSON.parse(jqXHR.responseText);
-                    $(document).find('.error').text("Wrong Details");
-                    }
-                }
-            });
-        });
-    });
-</script>
+	<script type="text/javascript" src="assets/js/core/app.min.js"></script>
+	<script type="text/javascript" src="assets/js/pages/login_validation.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body class="login-container login-cover" style="background-color: #f5f5f5;">
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content pb-20">
+
+					<!-- Form with validation -->
+					<form action="/secret" class="form-validate">
+						<div class="panel panel-body login-form">
+							<div class="text-center">
+								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" class="form-control" id="username" placeholder="Username" name="username" required="required">
+								<div class="form-control-feedback">
+									<i class="icon-user text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" class="form-control" placeholder="Password" id="password" name="password" required="required">
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group login-options">
+								<div class="row">
+									<div class="col-sm-6">
+										<label class="checkbox-inline">
+											<input type="checkbox" class="styled" checked="checked">
+											Remember
+										</label>
+									</div>
+
+									<div class="col-sm-6 text-right">
+										<a href="#">Forgot password?</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" id="sgn-btn" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+							</div>
+
+							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+							<a href="/register" class="btn bg-slate btn-block btn-lg content-group">Register</a>
+							<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+						</div>
+					</form>
+					<!-- /form with validation -->
+				</br>
+					<!-- Footer -->
+					<div class="footer text-muted text-center">
+						&copy; 2020 Sumit Rathi
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+	<script>
+	    $(function() {
+	        $(document).find('#sgn-btn').on('click', function(e)
+	        {
+	            e.preventDefault();
+	            var data = {
+	                username: $(document).find('#username').val(),
+	                password: $(document).find('#password').val(),
+	            };
+	            $.ajax({
+	                type: 'POST',
+	                data: JSON.stringify(data),
+	                contentType: 'application/json',
+	                url: '/login',
+	                statusCode: {
+	                    200: function() {
+	                    window.location.href = "/secret";
+	                    },
+	                    403: function(jqXHR) {
+	                    var error = JSON.parse(jqXHR.responseText);
+	                    $(document).find('.error').text("Wrong Details");
+	                    }
+	                }
+	            });
+	        });
+	    });
+	</script>
+</body>
+</html>
