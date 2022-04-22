@@ -26,7 +26,7 @@
     "http-errors": "^1.7.3",
     "middleware": "^1.0.0",
     "mongoose": "^5.9.18",
-    "nconf": "^0.10.0",
+    "nconf": "^0.11.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
